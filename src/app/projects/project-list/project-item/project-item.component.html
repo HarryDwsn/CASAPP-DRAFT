@@ -1,0 +1,18 @@
+
+<div>
+  <a
+    style="cursor: pointer;"
+    [routerLink]="[index]"
+    (click)=" selectProject(projectId)"
+    routerLinkActive="active"
+    class="list-group-item clearfix">
+    <div class="pull-left">
+      <h5 class="list-group-item-heading" *ngIf="this.auth.currentUserData.roles.teacher == true">{{ project?.userid  }}  </h5>
+      <h4 class="list-group-item-heading">{{ project?.name }} | {{ project?.CAS | uppercase }} </h4>
+      <p class="list-group-item-text">{{ project?.description | shorten}} ...</p>
+
+    </div>
+  </a>
+
+</div>
+

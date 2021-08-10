@@ -1,0 +1,32 @@
+
+<div class="row">
+  <div class="col-lg-3">
+    <button
+      class="btn btn-success"
+      (click)="studentService.allStudentSel()"
+      [routerLink]="['/projects']">
+      ALL STUDENTS
+    </button>
+  </div>
+</div>
+
+<hr>
+
+
+<div *ngFor="let student of students | async">
+  <a
+    style="cursor: pointer;"
+    [routerLink]="['/projects']"
+    routerLinkActive="active"
+    (click)="onStudentSel(student)"
+
+    class="list-group-item clearfix">
+    <div class="pull-left">
+      <h4 class="list-group-item-heading">{{ student?.name }} | {{ student?.email | uppercase }} </h4>
+      <p class="list-group-item-text">{{ student?.classroom }}</p>
+    </div>
+  </a>
+</div>
+
+
+

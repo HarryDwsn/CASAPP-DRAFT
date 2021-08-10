@@ -1,0 +1,49 @@
+<p>extended-view works!</p>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h1 [ngStyle]="{backgroundColor:extended.CAS == 'activity' ? 'red':'transparent'}">{{ extended.name }} | {{ extended.CAS | uppercase }}  </h1>
+  </div>
+</div>
+
+<span class="pull-right">
+  {{extended.startdate }}
+</span>
+
+<span class="pull-right">
+  {{extended.enddate }}
+</span>
+
+<div class="row">
+  <div class="col-xs-12">
+    {{ extended.description }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    {{ extended.reflections}}
+  </div>
+</div>
+
+
+<h1> Evidence </h1>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <div
+      class="btn-group"
+      appDropdown>
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle">
+        manage Expericnce  <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer;" (click)="onEditProject()">Edit Experince</a></li>
+        <li><a style="cursor: pointer;" (click)="onDeleteProject()">Delete Experince</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

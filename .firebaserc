@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "casapp-3842e": {
+      "hosting": {
+        "ng-complete-guide-update": [
+          "casapp-3842e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "casapp-3842e"
+  }
+}

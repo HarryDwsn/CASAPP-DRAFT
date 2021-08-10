@@ -1,0 +1,163 @@
+<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/primeng@8.0.2/resources/themes/nova-light/theme.css'/>
+<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/primeng@8.0.2/resources/primeng.min.css'/>
+<link rel='stylesheet' type='text/css' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!projectForm?.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+
+      <div class="container" style="margin-left: 30%">
+          <div>
+            <label for="CAS">CAS</label>
+            <p-selectButton
+              [options]="CAS"
+              [(ngModel)]="selectedCAS"
+              id="CAS"
+              formControlName="CAS">
+            </p-selectButton>
+            <p> Selected Type: <span style="font-weight: bold"> {{selectedCAS | uppercase}} </span></p>
+          </div>
+      </div>
+
+      <div class="container" >
+        <label for="month">Month = {{selectedMon}} </label>
+        <div class="p-field p-col-14 p-md-4">
+          <p-calendar
+            [inline]="true"
+            [(ngModel)]="selectedMon"
+            view="month" dateFormat="MM"
+            [yearNavigator]="true"
+            yearRange="{{ minYear}}:{{ maxYear}}"
+            [readonlyInput]="true"
+            inputId="monthpicker"
+            dataType="string"
+            id="month"
+            formControlName="month">
+          </p-calendar>
+        </div>
+      </div>
+
+      <div class="row" style="position: center">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="name">Experince Title</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="Brief name for the Experience"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Experince Description</label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              placeholder="Describe what happened"
+              formControlName="description"
+              rows="6"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="reflections">Experience Reflections</label>
+            <textarea
+              type="text"
+              id="reflections"
+              class="form-control"
+              placeholder="Describe how you feel"
+              formControlName="reflections"
+              rows="6"></textarea>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label >Learning Objectives</label>
+
+            <div class="p-field-checkbox">
+              <p-checkbox name="group1" value="New York" [(ngModel)]="LO" inputId="ny"></p-checkbox>
+              <label for="ny">Increased their awareness of their own strengths and areas for growth</label>
+            </div>
+
+            <div class="p-field-checkbox">
+              <p-checkbox name="group1" value="San Francisco" [(ngModel)]="LO" inputId="sf"> dasdasd</p-checkbox>
+              <label  for="sf">Undertaken new challenges and developed skills</label>
+            </div>
+
+            <div class="p-field-checkbox">
+              <p-checkbox name="group1" value="Los Angeles" [(ngModel)]="LO" inputId="la"></p-checkbox>
+              <label for="la">Planned and initiated activities</label>
+            </div>
+
+            <div class="p-field-checkbox">
+              <p-checkbox name="group1" value="Chicago" [(ngModel)]="LO" inputId="ch"></p-checkbox>
+              <label for="ch">Worked collaboratively with others </label>
+            </div>
+
+            <div class="p-field-checkbox">
+              <p-checkbox name="group1" value="Chicago" [(ngModel)]="LO" inputId="ch"></p-checkbox>
+              <label for="ch">Engaged with issues of global significance</label>
+            </div>
+
+            <div class="p-field-checkbox">
+              <p-checkbox name="group1" value="Chicago" [(ngModel)]="LO" inputId="ch"></p-checkbox>
+              <label for="ch">Considered ethics in choices and actions</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="h4">
+            Upload Images for evidence
+          </div>
+
+          <div class="form-group">
+            <input type="file" class="custom-file-input form-control" id="files" multiple (change)="detectFiles($event)" accept="image/x-png,image/jpeg">
+          </div>
+
+          <div class="images-preview mt-2" *ngIf="evidences.length">
+            <div class="row">
+              <div class="col-md-6 col-lg-3	 col-xl-2" formArrayName="evidences" *ngFor="let evidence of evidences.controls; let i = index;">
+                <div class="card mb-3" [formGroupName]="i">
+                  <button type="button" (click)="removeEvidence(i)" class="btn btn-danger remove-btn">x</button>
+                  <img [src]="evidence.controls.downloadURL.value" class="card-img-top" alt="Image Preview">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

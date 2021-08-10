@@ -1,0 +1,80 @@
+<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/primeng@8.0.2/resources/themes/nova-light/theme.css'/>
+<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/primeng@8.0.2/resources/primeng.min.css'/>
+<link rel='stylesheet' type='text/css' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
+
+<div class="row">
+
+
+  <div class="d-flex flex-row justify-content-between">
+    <div class="p-2" >
+      <button class="btn btn-success" *ngIf="this.authService.canNewProject(currentUser.roles)" (click)="onNewProject()">New Project</button>
+    </div>
+
+    <div style="padding-top: 10px">
+      <button  class="btn btn-danger" (click)="onngon()"> RESET FILTERS </button>
+    </div>
+  </div>
+
+
+  <div class="d-flex flex-column" style="padding-top: 20px;" >
+
+
+
+
+    <div *ngIf="this.studentService.selectedUserId!== 'ALL'" class="p-2">
+      <button
+        class="btn btn-danger"
+        (click)="this.studentService.allStudentSel()"
+        [routerLink]="'/students'"
+        *ngIf="this.studentService.currentUser.id !== 'ALL'" >
+         {{this.studentService.selectedStudentName}} | X |
+      </button>
+    </div>
+
+
+      <div class="p-2" >
+          <p-selectButton
+            [options]="CAS"
+            [(ngModel)]="CASSelected"
+            (click)="onFilter()"
+            [routerLink]="''"
+            id="CAS">
+          </p-selectButton>
+          <p> Selected Type: <span style="font-weight: bold"> {{CASSelected}} </span></p>
+      </div>
+
+      <div class="p-2">
+        <h5>Month</h5>
+        <p-dropdown (click)="onFilter()" [options]="groupedDate" [(ngModel)]="monthSelected" autoWidth="false"  [style]="{'width':'20%'} " [group]="true" class="ng-tns-c15-7 ng-valid ng-touched p-inputwrapper-filled ng-dirty" >
+          <ng-template let-group pTemplate="group" style="font-size: large">
+            <div class="p-d-flex p-ai-center" style="font-size: large">
+              <span style="font-size: large" >{{group.label}}</span>
+            </div>
+          </ng-template>
+        </p-dropdown>
+        {{monthSelected}}
+      </div>
+  </div>
+
+</div>
+
+
+
+
+
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+
+
+    <app-project-item
+
+      *ngFor="let project of projects | async; let i = index"
+
+      [project]="project.data"
+
+      [projectId] ="project.id"
+      [index]="i"></app-project-item>
+  </div>
+</div>
+
